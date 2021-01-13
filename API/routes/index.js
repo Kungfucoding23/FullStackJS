@@ -1,31 +1,32 @@
-import express from 'express'
-// const express = require('express')
-const router = express.Router()
-import pacienteController from '../controllers/pacienteController.js'
-// const pacienteController = require('../controllers/pacienteController')
+const express = require('express');
+const router = express.Router();
+const pacienteController = require('../controllers/pacienteControllers');
 
 module.exports = function() {
     // Agrega nuevos pacientes via POST
-    router.post('/pacientes',
-            pacienteController.nuevoCliente
-        )
-        // obtiene todos los registros de pacientes de la db
+    router.post('/pacientes', 
+        pacienteController.nuevoCliente
+    );
+
+    // Obtiene todos los registros de pacientes en la BD
     router.get('/pacientes',
         pacienteController.obtenerPacientes
-    )
-
+    );
+    // Obtiene un paciente en especifico (ID)
     router.get('/pacientes/:id',
         pacienteController.obtenerPaciente
     )
 
-    // actualizar un registro
+    // Actualizar un registro con un ID especifico
     router.put('/pacientes/:id',
         pacienteController.actualizarPaciente
-    )
+    );
 
-    // elimina registro
+    // Elimina un paciente por su ID
     router.delete('/pacientes/:id',
         pacienteController.eliminarPaciente
-    )
-    return router
+    );
+
+
+    return router;
 }

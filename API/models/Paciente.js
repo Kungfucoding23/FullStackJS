@@ -1,29 +1,31 @@
-import mongoose from 'mongoose'
-// const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-const pacienteSchema = new Schema({
+const pacientesSchema = new Schema({
     nombre: {
-        type: string,
-        trim: true
+        type: String,
+        trim: true,
     },
     propietario: {
-        type: string,
+        type: String,
         trim: true
     },
     fecha: {
-        type: string,
+        type: String,
+        trim: true
+    },
+    telefono: {
+        type: String,
         trim: true
     },
     hora: {
-        type: string,
+        type: String,
         trim: true
     },
     sintomas: {
-        type: string,
+        type: String,
         trim: true
     }
-})
+});
 
-// hacemos disponible este modelo
-module.exports = mongoose.model('Paciente', pacienteSchema)
+module.exports  = mongoose.model('Paciente', pacientesSchema);
