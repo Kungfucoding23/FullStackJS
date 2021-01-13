@@ -4,7 +4,7 @@
     "description": "Backend en Mongo y Express",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon index.js"
+        "dev": "nodemon ./API/index.js"
     },
     "type": "module",
     "author": "Alejandro Lucas Santin",

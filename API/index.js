@@ -5,5 +5,5 @@ const app = express()
 
 // puerto y arrancar el servidor
 app.listen(4000, () => {
-    console.log('servidor funcionando')
+    console.log('Servidor funcionando')
 })
