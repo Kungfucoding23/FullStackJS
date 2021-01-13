@@ -10,10 +10,10 @@ const app = express();
 // Habilitar Cors
 const whitelist = ['http://localhost:3000'];
 const corsOptions = {
-    origin: (origin, callback) =>  {
+    origin: (origin, callback) => {
         // console.log(origin);
-        const existe = whitelist.some( dominio => dominio === origin);
-        if ( existe ) {
+        const existe = whitelist.some(dominio => dominio === origin);
+        if (existe) {
             callback(null, true)
         } else {
             callback(new Error('No Permitido por CORS'))
@@ -27,7 +27,7 @@ app.use(cors());
 
 // Conectar a mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/veterinaria', {
+mongoose.connect('mongodb+srv://ale:ale1402@golangfinalproyect.cl5zb.mongodb.net/veterinaria?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -35,7 +35,7 @@ mongoose.connect('mongodb://localhost/veterinaria', {
 
 // habilitar el body-parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // habilitar routing
 app.use('/', routes())
