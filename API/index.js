@@ -14,9 +14,9 @@ const corsOptions = {
         // console.log(origin);
         const existe = whitelist.some(dominio => dominio === origin);
         if (existe) {
-            callback(null, true)
+            callback(null, true) // si el dominio se encuentra en la whitelist lo permitimos
         } else {
-            callback(new Error('No Permitido por CORS'))
+            callback(new Error('No Permitido por CORS')) //caso contrario
         }
     }
 }
@@ -43,5 +43,5 @@ app.use('/', routes())
 
 // puerto y arrancar el servidor
 app.listen(4000, () => {
-    console.log('Servidor funcionando')
+    console.log('Listening...')
 })
