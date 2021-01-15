@@ -23,7 +23,8 @@ const Pacientes = ({ citas }) => {
         <
         div className = "list-group" > {
             citas.map(cita => ( <
-                Link key = { cita._id }
+                Link to = { `/cita/${cita._id}` }
+                key = { cita._id }
                 className = "p-5 list-group-item list-group-item-action flex-column align-items-start" >
                 <
                 div className = "d-flex w-100 justify-content-between mb-4" >
