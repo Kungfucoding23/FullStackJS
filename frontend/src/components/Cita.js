@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import clienteAxios from '../config/axios'
+import Swal from 'sweetalert2'
 
 const Cita = (props) => {
     if (!props.cita) {
@@ -10,14 +11,36 @@ const Cita = (props) => {
 
     //elimina un registro
     const eliminarCita = id => {
-        clienteAxios.delete(`/pacientes/${id}`)
-            .then(res => {
-                props.guardarConsultar(true)
-                props.history.push('/')
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No lo podras recuperar!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // Alerta de eliminado
+                Swal.fire(
+                    'Eliminado!',
+                    'Operación realizada con exito.',
+                    'success'
+                )
+
+                //Eliminado de la bd
+                clienteAxios.delete(`/pacientes/${id}`)
+                    .then(res => {
+                        props.guardarConsultar(true)
+                        props.history.push('/')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }
+        })
     }
 
     return ( <
