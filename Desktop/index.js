@@ -13,7 +13,8 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
-        }
+        },
+        icon: 'icon.png'
     })
 
     // Cuando la app es cerrada se elimina lo que se este utilizando de memoria

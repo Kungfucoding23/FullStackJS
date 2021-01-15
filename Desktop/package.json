@@ -3,12 +3,15 @@
     "version": "1.0.0",
     "description": "App de Electron",
     "main": "index.js",
+    "homepage": "/",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "dist": "electron-builder -w"
     },
     "author": "Alejandro Santin",
     "license": "ISC",
     "devDependencies": {
-        "electron": "^11.2.0"
+        "electron": "^11.2.0",
+        "electron-builder": "^22.9.1"
     }
 }
