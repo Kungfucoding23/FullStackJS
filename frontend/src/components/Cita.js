@@ -1,11 +1,25 @@
 import React, { Fragment } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import clienteAxios from '../config/axios'
 
 const Cita = (props) => {
     if (!props.cita) {
         props.history.push('/')
         return null
     }
+
+    //elimina un registro
+    const eliminarCita = id => {
+        clienteAxios.delete(`/pacientes/${id}`)
+            .then(res => {
+                props.guardarConsultar(true)
+                props.history.push('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     return ( <
         Fragment >
         <
@@ -44,7 +58,10 @@ const Cita = (props) => {
         div className = "" >
         <
         button type = "button"
-        className = "text-uppercase py-2 px-5 font-weight-bold btn btn-danger col" >
+        className = "text-uppercase py-2 px-5 font-weight-bold btn btn-danger col"
+        onClick = {
+            () => eliminarCita(props.cita._id)
+        } >
         Eliminar x <
         /button> < /
         div > <
