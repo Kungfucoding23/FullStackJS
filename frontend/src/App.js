@@ -9,38 +9,47 @@ import Cita from './components/Cita'
 function App() {
     // state de la app
     const [citas, guardarCitas] = useState([])
+        // eslint-disable-next-line
+    const [consultar, guardarConsultar] = useState(true)
     useEffect(() => {
-            const consultarApi = () => {
-                clienteAxios.get('/pacientes')
-                    .then(respuesta => {
-                        // colocar en el state el resultado
-                        guardarCitas(respuesta.data)
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
+            if (consultar) {
+                const consultarApi = () => {
+                    clienteAxios.get('/pacientes')
+                        .then(respuesta => {
+                            // colocar en el state el resultado
+                            guardarCitas(respuesta.data)
+                                // deshabilitar la consulta
+                            guardarConsultar(false)
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+                }
+                consultarApi()
             }
-            consultarApi()
-        }, []) //en [] van las dependencias
+        }, [consultar]) //en [] van las dependencias
     return ( <
-        Router >
-        <
-        Switch >
-        <
-        Route exact path = "/"
-        component = {
-            () => < Pacientes citas = { citas }
-            />} /
-            > <
-            Route exact path = "/nueva"
-            component = { NuevaCita }
-            /> <
-            Route exact path = "/cita/:id"
-            component = { Cita }
-            /> < /
-            Switch > <
-            /Router>
-        )
-    }
+            Router >
+            <
+            Switch >
+            <
+            Route exact path = "/"
+            component = {
+                () => < Pacientes citas = { citas }
+                guardarConsultar = { guardarConsultar }
+                />} / >
+                <
+                Route exact path = "/nueva"
+                component = {
+                    () => < NuevaCita guardarConsultar = { guardarConsultar }
+                    />} / >
+                    <
+                    Route exact path = "/cita/:id"
+                    component = { Cita }
+                    /> < /
+                    Switch > <
+                    /Router>
+                )
+            }
 
-    export default App
+            export default App

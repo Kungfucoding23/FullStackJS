@@ -10,9 +10,9 @@ html {
 }
 
 body {
-    background: #AA076B;
-    background: -webkit-linear-gradient(to right, #61045F, #AA076B);
-    background: linear-gradient(to right, #61045F, #AA076B);
+    background: #07aaaa;
+    background: -webkit-linear-gradient(to right, #2e91e2, #075baa);
+    background: linear-gradient(to right, #0d5bc2, #075baa);
     font-size: 1.6rem;
 }
 

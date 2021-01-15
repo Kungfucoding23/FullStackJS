@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 const Pacientes = ({ citas }) => {
     //si el arreglo esta vacio no retorna nada
@@ -15,20 +16,37 @@ const Pacientes = ({ citas }) => {
         <
         div className = "col-12 mb-5 d-flex justify-content-center" >
         <
-        a href = "#"
-        className = "btn btn-success text-uppercase py-2 px-5 font-weight-bold" > Crear Cita < /a> <
-        /div> <
+        Link to = { '/nueva' }
+        className = "btn btn-success text-uppercase py-2 px-5 font-weight-bold" > Crear Cita < /Link> < /
+        div > <
         div className = "col-md-8 mx-auto" >
         <
         div className = "list-group" > {
             citas.map(cita => ( <
-                h3 className = "mb-3" > { cita.nombre } < /h3> 
+                Link key = { cita._id }
+                className = "p-5 list-group-item list-group-item-action flex-column align-items-start" >
+                <
+                div className = "d-flex w-100 justify-content-between mb-4" >
+                <
+                h3 className = "mb-3" > { cita.nombre } < /h3>  <
+                smal className = "fecha-alta" > { cita.fecha } - { cita.hora } <
+                /smal> < /
+                div >
+                <
+                p className = "mb-0" > { cita.sintomas } <
+                /p>  <
+                div className = "contacto py-3" >
+                <
+                p > Dueño: { cita.propietario } < /p> <
+                p > Teléfono: { cita.telefono } < /p> < /
+                div > <
+                /Link>
             ))
         } <
-        /div> <
-        /div> <
-        /div> <
-        /div> <
+        /div> < /
+        div > <
+        /div> < /
+        div > <
         /Fragment>
     )
 }
